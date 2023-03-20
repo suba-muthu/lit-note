@@ -1,30 +1,28 @@
-import { Card } from '@mui/material';
-import React from 'react'
-import { useEffect, useState } from 'react'
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import { Card, CardContent, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react'
 
-export default function Todos() {
+export default function Posts() {
 
     const router = useRouter();
     const data = router.query;
+    console.log(data);
 
-    const [todoData, setTodoData] = useState([]);
- 
-    async function fetchTodoData() {
-        const user = await fetch(`https://jsonplaceholder.typicode.com/todos?userId=${data.id}`);
+    const [postData, setPostData] = useState([]);
+
+    async function fetchPostData() {
+        const user = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${data.id}`);
         const jsonData = await user.json();
-        setTodoData(jsonData);
+        setPostData(jsonData);
     }
 
     useEffect(() => {
-        fetchTodoData();
-    },[])
+        fetchPostData();
+    }, []);
 
   return (
     <div>
-        {todoData.map((item) => {
+        {postData.map((item) => {
             return(
                 <Card>
                     <CardContent>
@@ -38,7 +36,7 @@ export default function Todos() {
                             {item.title}
                         </Typography>
                         <Typography sx={{ fontSize: 14 }}>
-                            {item.completed}
+                            {item.body}
                         </Typography>
                     </CardContent>
                 </Card>

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import ShowData from './Components/ShowData'
+import { useEffect, useState } from 'react';
+import ShowData from './Components/ShowData';
 
 export default function Home() {
   const [ data, setData ] = useState([]);
